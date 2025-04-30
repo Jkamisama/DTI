@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink - Bennett University</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS from grocery shop -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+     </div>
+    <nav class="navbar">
+        <div class="logoimage">
+            <img src="images/unilinklogo.jpg" class="image">
+
+        </div>
+        <div class="logo">
+            <h1>Unilink</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active" data-page="home">Home</a>
+            <a href="#" data-page="grocery">Grocery Store</a>
+            <a href="#" data-page="spaces">Spaces</a>
+            <a href="#" data-page="lockers">Lockers</a>
+            <div class="user-info">
+                <span id="currentUserDisplay" class="hidden">
+                    <i class="fas fa-user-circle"></i> 
+                    <span id="userDisplayName"></span>
+                </span>
+            </div>
+            <div class="auth-buttons">
+                <button id="loginBtn" class="btn" style="color:white">Login</button>
+                <button id="registerBtn" class="btn" style="color:white">Register</button>
+                <button id="logoutBtn" class="btn hidden" style="color:white; margin-right:40px;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h2>Welcome to Unilink</h2>
+                <p>Your one-stop solution for campus services at Bennett University</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Grocery Store</h3>
+                    <p>Check product availability and reserve items online</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Sports & Library</h3>
+                    <p>Monitor space availability in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Food Delivery</h3>
+                    <p>Secure locker system for food deliveries</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grocery Store Page -->
+        <section id="grocery" class="page">
+            <div class="grocery-shop-container">
+                <!-- Top Bar -->
+                <div class="border-bottom pb-5">
+                    <div class="bg-light py-1">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <span>Super Value Deals - Save more with coupons</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="navbar navbar-light py-lg-5 pt-3 px-0 pb-0" style="height:120px;" >
+                        <div class="container" >
+                            <div class="row w-100 align-items-center g-3" style="margin-top:-50px;">
+                                <div class="col-xxl-2 col-lg-3">
+                                    <a class="navbar-brand" href="#">
+                                        <img src="images/Grocerylogo.png" style="width: 200px; border-radius: 10px;" alt="Grocery Store">
+                                    </a>
+                                </div>
+                                <div class="col-xxl-6 col-lg-5 d-none d-lg-block">
+                                    <div class="grocery-header">
+                                        <div class="header-actions">
+                                            <div class="search-header">
+                                                <input type="text" placeholder="Search products...">
+                                            </div>
+                                            <button id="cartBtn" class="btn cart-btn">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span class="cart-count">0</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Categories Sidebar -->
+                        <div class="col-lg-3">
+                            <div class="categories-sidebar">
+                                <h3>Categories</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" data-category="Food">Food</a></li>
+                                    <li><a href="#" data-category="Beverages">Beverages</a></li>
+                                    <li><a href="#" data-category="Snacks">Snacks</a></li>
+                                    <li><a href="#" data-category="Personal Care">Personal Care</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div class="col-lg-9">
+                            <div class="products-grid" id="productsGrid">
+                                <!-- Products will be dynamically added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spaces Page -->
+        <section id="spaces" class="page">
+            <div class="container">
+                <h2>Space Management</h2>
+                
+                <!-- Live Camera Feed Section -->
+                <div class="camera-section">
+                    <h3>Live Camera Feeds</h3>
+                    <div class="camera-grid">
+                        <div class="camera-card">
+                            <div class="camera-header">
+                                <h4>LRC Block A</h4>
+                                <span class="motion-indicator active"></span>
+                            </div>
+                            <div class="camera-feed" id="lrcBlockAFeed">
+                                <video id="lrcCamera" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                                <div class="motion-overlay">
+                                    <div class="motion-dot"></div>
+                                    <div class="motion-dot"></div>
+                                    <div class="motion-dot"></div>
+                                </div>
+                            </div>
+                            <div class="camera-stats">
+                                <span class="stat"><i class="fas fa-users"></i> <span id="lrcOccupancy">0/50</span></span>
+                                <span class="stat"><i class="fas fa-wifi"></i> Strong</span>
+                                <span class="stat"><i class="fas fa-bolt"></i> Motion Detected</span>
+                            </div>
+                        </div>
+                        
+                        <div class="camera-card">
+                            <div class="camera-header">
+                                <h4>Sports Complex</h4>
+                                <span class="motion-indicator"></span>
+                            </div>
+                            <div class="camera-feed">
+                                <img src="images/camera-feed-placeholder.jpg" alt="Sports Complex Camera Feed">
+                                <div class="motion-overlay">
+                                    <div class="motion-dot"></div>
+                                    <div class="motion-dot"></div>
+                                    <div class="motion-dot"></div>
+                                </div>
+                            </div>
+                            <div class="camera-stats">
+                                <span class="stat"><i class="fas fa-users"></i> 8/20</span>
+                                <span class="stat"><i class="fas fa-wifi"></i> Strong</span>
+                                <span class="stat"><i class="fas fa-bolt"></i> No Motion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time-lapse Monitoring Section -->
+                <div class="time-lapse-container">
+                    <div class="time-lapse-header">
+                        <h3>Library Occupancy Monitor</h3>
+                        <div class="time-lapse-controls">
+                            <button class="btn" id="playPauseBtn">
+                                <i class="fas fa-play"></i>
+                                <span>Play</span>
+                            </button>
+                            <div class="time-lapse-speed">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <select id="playbackSpeed">
+                                    <option value="1">1x</option>
+                                    <option value="2">2x</option>
+                                    <option value="4">4x</option>
+                                    <option value="8">8x</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="time-lapse-video">
+                        <img id="yoloFeed" src="http://127.0.0.1:5000/video_feed" alt="Live YOLO Feed" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    
+                    <div class="occupancy-stats">
+                        <div class="stat-card">
+                            <h4>Current Occupancy</h4>
+                            <div class="value" id="currentOccupancy">0/50</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Peak Hours</h4>
+                            <div class="value" id="peakHours">2 PM - 4 PM</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Alert Level</h4>
+                            <div class="value">
+                                <span class="alert-indicator low" id="alertIndicator"></span>
+                                <span id="alertLevel">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="occupancy-graph">
+                        <div class="graph-container" id="graphContainer">
+                            <div class="graph-line" id="graphLine"></div>
+                        </div>
+                        <div class="time-markers">
+                            <span>9 AM</span>
+                            <span>12 PM</span>
+                            <span>3 PM</span>
+                            <span>6 PM</span>
+                            <span>9 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Space Availability Overview -->
+                <div class="availability-section">
+                    <h3>Space Availability Overview</h3>
+                    <div class="availability-grid">
+                        <!-- LRC Blocks -->
+                        <div class="availability-card">
+                            <h4>LRC Blocks</h4>
+                            <div class="block-list">
+                                <div class="block-item available">
+                                    <span class="block-name">Block A</span>
+                                    <span class="block-status">Available</span>
+                                    <span class="block-capacity">15/50</span>
+                                </div>
+                                <div class="block-item occupied">
+                                    <span class="block-name">Block B</span>
+                                    <span class="block-status">Occupied</span>
+                                    <span class="block-capacity">45/50</span>
+                                </div>
+                                <div class="block-item available">
+                                    <span class="block-name">Block C</span>
+                                    <span class="block-status">Available</span>
+                                    <span class="block-capacity">20/50</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sports Courts -->
+                        <div class="availability-card">
+                            <h4>Sports Courts</h4>
+                            <div class="court-list">
+                                <div class="court-item available">
+                                    <span class="court-name">Basketball Court 1</span>
+                                    <span class="court-status">Available</span>
+                                    <span class="court-capacity">8/20</span>
+                                </div>
+                                <div class="court-item occupied">
+                                    <span class="court-name">Basketball Court 2</span>
+                                    <span class="court-status">Occupied</span>
+                                    <span class="court-capacity">18/20</span>
+                                </div>
+                                <div class="court-item available">
+                                    <span class="court-name">Tennis Court</span>
+                                    <span class="court-status">Available</span>
+                                    <span class="court-capacity">2/4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Space Booking Section -->
+                <div class="booking-section">
+                    <h3>Book a Space</h3>
+                    <div id="spacesGrid" class="spaces-grid">
+                        <!-- Spaces will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lockers Page -->
+        <section id="lockers" class="page">
+            <div class="container">
+                <h2>Smart Food Lockers</h2>
+                
+                <!-- Locker Status Overview -->
+                <div class="locker-overview">
+                    <div class="overview-card">
+                        <h3><i class="fas fa-box"></i> Total Lockers</h3>
+                        <p id="totalLockers" class="count">6</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3><i class="fas fa-check-circle"></i> Available</h3>
+                        <p id="availableLockers" class="count available">6</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3><i class="fas fa-clock"></i> Occupied</h3>
+                        <p id="occupiedLockers" class="count occupied">0</p>
+                    </div>
+                </div>
+
+                <!-- Delivery Person Interface -->
+                <div id="deliveryInterface" class="locker-interface">
+                    <h3><i class="fas fa-truck"></i> Delivery Person Interface</h3>
+                    <form id="deliveryForm" class="locker-form">
+                        <div class="form-group">
+                            <label for="studentEnrollment">Student/Teacher Enrollment Number:</label>
+                            <input type="text" id="studentEnrollment" required placeholder="Enter enrollment number">
+                        </div>
+                        <div class="form-group">
+                            <label for="foodDetails">Food Order Details:</label>
+                            <textarea id="foodDetails" required placeholder="Enter food order details"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryLocker">Select Available Locker:</label>
+                            <select id="deliveryLocker" required>
+                                <option value="">Select a locker</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-box"></i> Store Food & Generate OTP
+                        </button>
+                    </form>
+                </div>
+
+                <!-- User Interface -->
+                <div id="userLockerInterface" class="locker-interface">
+                    <h3><i class="fas fa-user"></i> Your Food Deliveries</h3>
+                    <div id="userDeliveries" class="delivery-cards">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                    
+                    <!-- OTP History Section -->
+                    <div id="otpHistory" class="otp-history">
+                        <h3><i class="fas fa-key"></i> Your Active OTPs</h3>
+                        <div class="otp-cards" id="otpCards">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                        <button id="refreshOTPsBtn" class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh OTPs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Locker Grid -->
+                <div id="lockerStatus" class="locker-grid">
+                    <h3><i class="fas fa-th-large"></i> Locker Status</h3>
+                    <div id="lockerGrid" class="locker-grid-container">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Retrieve Food Interface -->
+                <div id="retrieveInterface" class="locker-interface">
+                    <h3><i class="fas fa-utensils"></i> Retrieve Your Food</h3>
+                    <form id="retrieveForm" class="locker-form">
+                        <div class="form-group">
+                            <label for="retrieveLocker">Select Locker:</label>
+                            <select id="retrieveLocker" required>
+                                <option value="">Select a locker</option>
+                                <!-- Will be populated dynamically with occupied lockers -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="otpInput">Enter OTP:</label>
+                            <input type="text" id="otpInput" required placeholder="Enter 4-digit OTP" maxlength="4" pattern="[0-9]{4}">
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> Retrieve Food
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-header">
+                <h2><i class="fas fa-user-circle"></i> Login</h2>
+                <p>Welcome back! Please login to your account.</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                    <div class="password-input-group">
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group remember-forgot">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" id="switchToRegister">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-header">
+                <h2><i class="fas fa-user-plus"></i> Register</h2>
+                <p>Create your account to get started.</p>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEnrollment"><i class="fas fa-id-card"></i> Enrollment Number</label>
+                    <input type="text" id="registerEnrollment" placeholder="Enter enrollment number" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword"><i class="fas fa-lock"></i> Password</label>
+                    <div class="password-input-group">
+                        <input type="password" id="registerPassword" placeholder="Create password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength-meter">
+                        <div class="strength-bar"></div>
+                    </div>
+                    <div class="password-requirements">
+                        <p>Password must contain:</p>
+                        <ul>
+                            <li data-requirement="length"><i class="fas fa-check"></i> At least 8 characters</li>
+                            <li data-requirement="uppercase"><i class="fas fa-check"></i> One uppercase letter</li>
+                            <li data-requirement="lowercase"><i class="fas fa-check"></i> One lowercase letter</li>
+                            <li data-requirement="number"><i class="fas fa-check"></i> One number</li>
+                            <li data-requirement="special"><i class="fas fa-check"></i> One special character</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                    <div class="password-input-group">
+                        <input type="password" id="registerConfirmPassword" placeholder="Confirm password" required>
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="registerPhone" placeholder="Enter phone number" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Panel -->
+    <div class="cart-panel">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+            <button class="cart-close">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount">₹0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+        <div class="cart-empty">
+            <i class="fas fa-shopping-basket"></i>
+            <p>Your cart is empty</p>
+        </div>
+    </div>
+
+    <!-- Cart Item Template -->
+    <template id="cart-item-template">
+        <div class="cart-item">
+            <img class="cart-item-image" src="" alt="Product Image">
+            <div class="cart-item-details">
+                <h4 class="cart-item-name"></h4>
+                <div class="cart-item-price"></div>
+                <div class="cart-item-quantity">
+                    <button class="quantity-decrease">-</button>
+                    <span class="quantity-value">1</span>
+                    <button class="quantity-increase">+</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Grocery Shop JS -->
+    <script src="app.js"></script>
+    <script src="animation.js"></script>
+    <!-- YOLO Monitor -->
+    <script src="yolo-monitor.js"></script>
+    <!-- Password Utils -->
+    <script type="module" src="passwordUtils.js"></script>
+    <!-- Main JS -->
+    <script type="module" src="script.js"></script>
+    <!-- Add this before the closing body tag -->
+    <script src="/static/js/lockers.js"></script>
+    <script>
+        // Simple implementations of required functions to fix login/register issues
+        // Only use these if the functions from script.js aren't available yet
+        window.validatePassword = window.validatePassword || function(password) {
+            const errors = [];
+            
+            if (password.length < 8) {
+                errors.push('Password must be at least 8 characters long');
+            }
+            
+            if (!/[A-Z]/.test(password)) {
+                errors.push('Password must contain at least one uppercase letter');
+            }
+            
+            if (!/[a-z]/.test(password)) {
+                errors.push('Password must contain at least one lowercase letter');
+            }
+            
+            if (!/[0-9]/.test(password)) {
+                errors.push('Password must contain at least one number');
+            }
+            
+            if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                errors.push('Password must contain at least one special character');
+            }
+            
+            return {
+                isValid: errors.length === 0,
+                errors
+            };
+        };
+
+        // Simple hash function for demonstration
+        window.hashPassword = window.hashPassword || function(password) {
+            let hash = 0;
+            for (let i = 0; i < password.length; i++) {
+                const char = password.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+            return hash.toString(36);
+        };
+
+        // Password verification function
+        window.verifyPassword = window.verifyPassword || function(password, hashedPassword) {
+            return window.hashPassword(password) === hashedPassword;
+        };
+
+        // Simple notification function if the one from script.js isn't available
+        window.showNotification = window.showNotification || function(message, type = 'info') {
+            alert(message);
+        };
+
+        // Simple UI update function if the one from script.js isn't available
+        window.updateUIForUserRole = window.updateUIForUserRole || function() {
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            if (window.currentUser) {
+                loginBtn.classList.add('hidden');
+                registerBtn.classList.add('hidden');
+                logoutBtn.classList.remove('hidden');
+            } else {
+                loginBtn.classList.remove('hidden');
+                registerBtn.classList.remove('hidden');
+                logoutBtn.classList.add('hidden');
+            }
+        };
+        
+        // Add debug message to check if functions are ready
+        console.log('Window functions initialized in inline script');
+    </script>
+</body>
+</html> 
